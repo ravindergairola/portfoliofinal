@@ -10,6 +10,7 @@
 
 # production
 /build
+contact.js
 
 # misc
 .DS_Store
