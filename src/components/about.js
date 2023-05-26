@@ -102,7 +102,7 @@ function About() {
           <h2 className="heading">About<span>Me</span></h2>
           <h3>Im a web Web Developer. </h3>
           <p>{showFullText.about ? aboutText : `${aboutText.slice(0, 150)}...`}</p>
-          <a className="btn" onClick={() => toggleText("about")}>
+          <a className="btn" rel="noreferrer" onClick={() => toggleText("about")}>
             {showFullText.about ? "Read Less" : "Read More"}
           </a>
         </div>
@@ -120,13 +120,14 @@ function About() {
             <h1>bootstrap</h1>
             <h1>javascript</h1>
             <h1>react</h1>
+
             {/* <a href="/" className="btn">Read More</a> */}
           </div>
           <div className="services-box">
             <i className='bx bx-code-alt'></i>
 
             <p>{showFullText.service1 ? service1text : `${service1text.slice(0, 50)}...`}</p>
-          <a className="btn" onClick={() => toggleText("service1")}>
+          <a className="btn" rel="noreferrer" onClick={() => toggleText("service1")}>
             {showFullText.service1 ? "Read Less" : "Read More"}
           </a>
           </div>
@@ -136,7 +137,7 @@ function About() {
 
 
             <p>{showFullText.service2 ? service2text : `${service2text.slice(0, 60)}...`}</p>
-            <a className="btn" onClick={() => toggleText("service2")}>
+            <a className="btn" rel="noreferrer" onClick={() => toggleText("service2")}>
             {showFullText.service2 ? "Read Less" : "Read More"}
             </a>
           </div>
