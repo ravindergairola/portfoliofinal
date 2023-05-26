@@ -1,6 +1,5 @@
 import React from "react";
-// import Cvfile from "./components/cvfile.pdf";
-// import Contact from "./components/contact.js";
+
 
 
 function Home (){
@@ -38,24 +37,3 @@ return(
 );
 };
 export default Home;
-
-
-            {/* <div className="profession" style= {{"--i" :0}}>
-                <i className='bx bx-code-alt'></i>
-                <h3>Web Developer</h3>
-            </div> */}
-{/*             
-            <div className="profession" style= {{"--i" :1}}>
-                <i className='bx bx-camera'></i>
-                <h3>Photographer</h3>
-            </div> */}
-                {/* <div className="profession" style= {{"--i" :2}}>
-                    <i className='bx bx-palette'></i>
-                    <h3>Web Desiner</h3>
-                </div> */}
-            {/* <div className="profession" style= {{"--i" :3}}>
-                <i className='bx bx-video-recording'></i>
-                <h3>Videographper</h3>
-            </div> */}
-
-        {/* <div className="circle"></div> */}
