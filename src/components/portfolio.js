@@ -8,26 +8,20 @@ function Portfolio(){
 
 <div className="portfolio-container">
     <div className="portfolio-box">
-    <img src="https://i.pinimg.com/originals/41/82/a9/4182a9dd330c6442c4a1fbc78274d838.png" alt="" />
+    <img src="/home.PNG" alt="" />
         <div className="portfolio-layer">
-            <h4>Web design</h4>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi adipisci blanditiis aliquid.</p>
             <a href="https://gairolaweb.netlify.app/" target="_blank" rel="noreferrer"><i className='bx bx-link-external'></i></a>
         </div>
     </div>
     <div className="portfolio-box">
-    <img src="https://c4.wallpaperflare.com/wallpaper/923/289/124/java-programmer-coder-by-pcbots-wallpaper-preview.jpg" alt="" />
+    <img src="/about.PNG" alt="" />
         <div className="portfolio-layer">
-            <h4>Web design</h4>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi adipisci blanditiis aliquid.</p>
             <a href="https://gairolaweb.netlify.app/" target="_blank" rel="noreferrer"><i className='bx bx-link-external'></i></a>
         </div>
     </div>
     <div className="portfolio-box">
-    <img src="https://c4.wallpaperflare.com/wallpaper/218/40/1006/coder-developer-programmer-programming-wallpaper-preview.jpg"alt="" />
+    <img src="/services.PNG" alt="" />
         <div className="portfolio-layer">
-            <h4>Web design</h4>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi adipisci blanditiis aliquid.</p>
             <a href="https://gairolaweb.netlify.app/" target="_blank" rel="noreferrer"><i className='bx bx-link-external'></i></a>
         </div>
     </div>

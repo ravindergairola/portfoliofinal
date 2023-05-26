@@ -12,9 +12,7 @@ function Testimonial() {
                             <img src="https://i.pinimg.com/originals/41/82/a9/4182a9dd330c6442c4a1fbc78274d838.png"
                                 alt="" />
                             <h3>Gairola</h3>
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cum eligendi non harum sed libero
-                                optio praesentium saepe sit rerum illum?</p>
-
+                            <h3>No testimonial available!</h3>
                         </div>
                         <div class="testimonial-slide swiper-slide">
                             <img src="https://c4.wallpaperflare.com/wallpaper/923/289/124/java-programmer-coder-by-pcbots-wallpaper-preview.jpg"

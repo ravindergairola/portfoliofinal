@@ -1,53 +1,264 @@
-  // import e from "express";
-// import e from "express";
-import React, {useRef}from "react";
+import React, { useRef, useState } from "react";
 import emailjs from '@emailjs/browser';
-  const Contact = () => {
 
-const form = useRef()
+const Contact = () => {
+  const form = useRef();
+  const [submissionStatus, setSubmissionStatus] = useState('');
+  const [formErrors, setFormErrors] = useState({});
 
-    const sendEmail = (e) => {
-      e.preventDefault();
+  const validateForm = () => {
+    const errors = {};
+    let isValid = true;
 
-      emailjs.sendForm
-        ('service_pguqe7b',
-          'template_v47ixlw',
-          form.current,
-          'fkgx8jlcVIcDC9QK1')
-        .then((result) => {
-          console.log(result.text);
-        }, (error) => {
-          console.log(error.text);
-        });
-        e.target.reset()
-    };
+    // Validate the form fields
+    if (!form.current.user_name.value.trim()) {
+      errors.name = 'Name is required';
+      isValid = false;
+    }
+    if (!form.current.user_email.value.trim()) {
+      errors.email = 'Email is required';
+      isValid = false;
+    }
+    if (!form.current.user_number.value.trim()) {
+      errors.number = 'Mobile Number is required';
+      isValid = false;
+    }
+    if (!form.current.subject.value.trim()) {
+      errors.subject = 'Subject is required';
+      isValid = false;
+    }
+    if (!form.current.user_message.value.trim()) {
+      errors.message = 'Message is required';
+      isValid = false;
+    }
 
-      return (
-          <div>
-              <section className="contact" id="contact">
-              <h2 className="heading">Contact <span>Me</span> </h2>
+    setFormErrors(errors);
+    return isValid;
+  };
 
-              <form ref= {form} onSubmit={sendEmail}>
-                  <div className="input-box">
-                      <input type="text" name="user_name" placeholder="Full Name" />
-                      <input type="email" name="user_email" 
-                      // onChange={(e)=>setEmail(e.target.value)} 
-                      placeholder="Email Address"/>
-                  </div>
-                  <div className="input-box">
-                      <input type="number" name="user_number" placeholder="Mobile Number"/>
-                      <input type="text" name="subject" placeholder="Email subject"/>
-                  </div>
-                  <textarea name="user_message" id="" cols="30" rows="10" placeholder="Meassage"></textarea>
-                  <input type="submit"
-                  //  onClick={sendEmail} 
-                   value="Send Meassage" className="btn"/>
-              </form>
-          </section>
-          </div>
-  )
+  const clearError = (fieldName) => {
+    setFormErrors(prevErrors => ({
+      ...prevErrors,
+      [fieldName]: ''
+    }));
+  };
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    if (!validateForm()) {
+      return; // Stop here if form validation fails
+    }
+
+    emailjs.sendForm(
+      'service_pguqe7b',
+      'template_v47ixlw',
+      form.current,
+      'fkgx8jlcVIcDC9QK1'
+    )
+      .then((result) => {
+        console.log(result.text);
+        setSubmissionStatus('success');
+        form.current.reset();
+        setTimeout(() => {
+          setSubmissionStatus('');
+          window.location.reload(); // Refresh the page
+        }, 3000); // Reset the submission status after 3 seconds and then refresh the page
+      })
+      .catch((error) => {
+        console.log(error.text);
+        setSubmissionStatus('failure');
+        setTimeout(() => {
+          setSubmissionStatus('');
+          window.location.reload(); // Refresh the page
+        }, 3000); // Reset the submission status after 3 seconds and then refresh the page
+      });
+  };
+
+  let message = null;
+  if (submissionStatus === 'success') {
+    message = (
+      <div className="alert alert-success alert-dismissible fade show my-4" role="alert">
+        <span style={{ fontSize: '20px', color: 'blue' }}>Email sent successfully!</span>
+        <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    );
+  } else if (submissionStatus === 'failure') {
+    message = (
+      <div className="alert alert-success alert-dismissible fade show my-4" role="alert">
+        <span style={{ fontSize: '20px', color: 'red' }}>
+          Failed to send email.</span>
+        <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    );
   }
-  export default Contact;
+
+  return (
+    <div className="container">
+      <div className="row">
+        <div className="col">
+          <section className="contact" id="contact">
+            <h2 className="heading">Contact <span>Me</span> </h2>
+
+            {message}
+
+            <form ref={form} onSubmit={sendEmail}>
+              <div className="input-group">
+                <input
+                  type="text"
+                  name="user_name"
+                  placeholder="Full Name"
+                  className={`form-control ${formErrors.name ? 'is-invalid' : ''}`}
+                  onFocus={() => clearError('name')}
+                />
+                {formErrors.name && (
+                  <div className="invalid-feedback">{formErrors.name}</div>
+                )}
+                <input
+                  type="email"
+                  name="user_email"
+                  placeholder="Email Address"
+                  className={`form-control ${formErrors.email ? 'is-invalid' : ''}`}
+                  onFocus={() => clearError('email')}
+                />
+                {formErrors.email && (
+                  <div className="invalid-feedback">{formErrors.email}</div>
+                )}
+              </div>
+
+              <div className="input-group">
+                <input
+                  type="number"
+                  name="user_number"
+                  placeholder="Mobile Number"
+                  className={`form-control ${formErrors.number ? 'is-invalid' : ''}`}
+                  onFocus={() => clearError('number')}
+                />
+                {formErrors.number && (
+                  <div className="invalid-feedback">{formErrors.number}</div>
+                )}
+                <input
+                  type="text"
+                  name="subject"
+                  placeholder="Email subject"
+                  className={`form-control ${formErrors.subject ? 'is-invalid' : ''}`}
+                  onFocus={() => clearError('subject')}
+                />
+                {formErrors.subject && (
+                  <div className="invalid-feedback">{formErrors.subject}</div>
+                )}
+              </div>
+
+              <textarea
+                name="user_message"
+                cols="30"
+                rows="10"
+                placeholder="Message"
+                className={`form-control ${formErrors.message ? 'is-invalid' : ''}`}
+                onFocus={() => clearError('message')}
+              ></textarea>
+              {formErrors.message && (
+                <div className="invalid-feedback">{formErrors.message}</div>
+              )}
+
+              <input type="submit" value="Send Message" className="btn btn-primary mt-3" />
+            </form>
+          </section>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Contact;
+
+
+
+
+// import React, {useRef}from "react";
+// import emailjs from '@emailjs/browser';
+//   const Contact = () => {
+
+// const form = useRef()
+
+//     const sendEmail = (e) => {
+//       e.preventDefault();
+
+//       emailjs.sendForm
+//         ('service_pguqe7b',
+//           'template_v47ixlw',
+//           form.current,
+//           'fkgx8jlcVIcDC9QK1')
+//         .then((result) => {
+//           console.log(result.text);
+//           if (result.isSuccessful) {
+//             return (
+//               <div>
+//                 {<div class="alert alert-warning alert-dismissible fade show" role="alert">
+//                   <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+//                   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+//                 </div>}
+//               </div>
+//             );
+//             e.target.reset();
+//           } else {
+//             return (
+//               <div>
+//                 {/* HTML code */}
+//               </div>
+//             );
+//           }
+//         })
+//         .catch((error) => {
+//           console.log(error.text);
+//         });
+
+//     };
+
+//       return (
+//           <div>
+//               <section className="contact" id="contact">
+//               <h2 className="heading">Contact <span>Me</span> </h2>
+
+//               <form ref= {form} onSubmit={sendEmail}>
+//                   <div className="input-box">
+//                       <input type="text" name="user_name" placeholder="Full Name" />
+//                       <input type="email" name="user_email"
+//                       // onChange={(e)=>setEmail(e.target.value)}
+//                       placeholder="Email Address"/>
+//                   </div>
+//                   <div className="input-box">
+//                       <input type="number" name="user_number" placeholder="Mobile Number"/>
+//                       <input type="text" name="subject" placeholder="Email subject"/>
+//                   </div>
+//                   <textarea name="user_message" id="" cols="30" rows="10" placeholder="Meassage"></textarea>
+//                   <input type="submit"
+//                   //  onClick={sendEmail}
+//                    value="Send Meassage" className="btn"/>
+//               </form>
+//           </section>
+//           </div>
+//   )
+//   }
+//   export default Contact;
+
+
+
+
+
+
+
+
+
+
+
+
+          // .then((result) => {
+        //   console.log(result.text);
+        // }, (error) => {
+        //   console.log(error.text);
+        // });
+        // e.target.reset()
 
 
 // import React, { useState } from 'react';
