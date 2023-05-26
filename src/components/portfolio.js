@@ -12,7 +12,7 @@ function Portfolio(){
         <div className="portfolio-layer">
             <h4>Web design</h4>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi adipisci blanditiis aliquid.</p>
-            <a href="https://gairolaweb.netlify.app/"><i className='bx bx-link-external'></i></a>
+            <a href="https://gairolaweb.netlify.app/" target="_blank" rel="noreferrer"><i className='bx bx-link-external'></i></a>
         </div>
     </div>
     <div className="portfolio-box">
@@ -20,7 +20,7 @@ function Portfolio(){
         <div className="portfolio-layer">
             <h4>Web design</h4>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi adipisci blanditiis aliquid.</p>
-            <a href="https://gairolaweb.netlify.app/"><i className='bx bx-link-external'></i></a>
+            <a href="https://gairolaweb.netlify.app/" target="_blank" rel="noreferrer"><i className='bx bx-link-external'></i></a>
         </div>
     </div>
     <div className="portfolio-box">
@@ -28,7 +28,7 @@ function Portfolio(){
         <div className="portfolio-layer">
             <h4>Web design</h4>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi adipisci blanditiis aliquid.</p>
-            <a href="https://gairolaweb.netlify.app/"><i className='bx bx-link-external'></i></a>
+            <a href="https://gairolaweb.netlify.app/" target="_blank" rel="noreferrer"><i className='bx bx-link-external'></i></a>
         </div>
     </div>
  
