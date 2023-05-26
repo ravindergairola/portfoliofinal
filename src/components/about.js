@@ -58,7 +58,7 @@
 // export default About;
 
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 function About() {
   const [showFullText, setShowFullText] = useState({
@@ -76,13 +76,13 @@ function About() {
     }));
   };
 
-  const resetState = () => {
-    setShowFullText({
-      about: false,
-      service1: false,
-      service2: false,
-    });
-  };
+  // const resetState = () => {
+  //   setShowFullText({
+  //     about: false,
+  //     service1: false,
+  //     service2: false,
+  //   });
+  // };
 
   const aboutText = "Hello! I'm Ravinder Prasad Gairola, a passionate and dedicated web developer. As a fresh talent in the field, I bring a fresh perspective and unwavering enthusiasm to my work. Proficient in HTML, CSS, JavaScript, and React, I strive to create immersive digital experiences that blend functionality and aesthetics. With a strong commitment to continuous learning and growth, I am eager to contribute my skills and make a positive impact in the world of web development.";
 
